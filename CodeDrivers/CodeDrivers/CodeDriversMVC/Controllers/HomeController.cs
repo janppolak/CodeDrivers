@@ -13,11 +13,13 @@ namespace CodeDriversMVC.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly CarService _carService;
+        private readonly ReservationService _reservationService;
 
-        public HomeController(ILogger<HomeController> logger, CarService carService)
+        public HomeController(ILogger<HomeController> logger, CarService carService, ReservationService reservationService)
         {
             _logger = logger;
             _carService = carService;
+            _reservationService = reservationService;
         }
 
         public async Task<IActionResult> Index()
@@ -39,16 +41,13 @@ namespace CodeDriversMVC.Controllers
                 && Enum.TryParse(gearTypeDropdownText, out GearType gearType)
                 && Enum.TryParse(motorTypeDropdownText, out MotorType motorType))
             {
-                var carFromBrand = _carService.GetByAllFilters(brand, segment,gearType,motorType);
-                //var carFromSegment = _carService.GetByAllFilters(brand,segment,gearType,motorType);
-                return View(carFromBrand);
+                var carsByFilters = _carService.GetByAllFilters(brand, segment,gearType,motorType);
+                return View(carsByFilters);
             }
             if (searchTextBrand == "Wszystko")
             {
-
-
-                var allCars = _carService.GetAll();
-                return View(allCars);
+                var availableCars = _carService.GetAllAvailable(dateStart, dateEnd);
+                return View(availableCars);
             }
 
 

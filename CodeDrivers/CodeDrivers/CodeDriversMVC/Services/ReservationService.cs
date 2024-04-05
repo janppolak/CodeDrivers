@@ -73,6 +73,15 @@ namespace CodeDriversMVC.Services
                 .Where(r => !(r.ReservationTo <= newReservationFrom || r.ReservationFrom >= newReservationTo))
                 .Any();
         }
+
+        public List<Reservation> GetAvailableReservationsByPeriod(DateTime newReservationFrom, DateTime newReservationTo)
+        {
+            return _context.Reservations
+                .Include(p => p.Car)
+                .Where(r => !(r.ReservationTo <= newReservationFrom || r.ReservationFrom >= newReservationTo))
+                .ToList();
+        }
+
         public List<ReservationReportModel> GetFilteredReservations(string brandFilter, string modelFilter, string fromDateFilter, string toDateFilter, string priceFilter, string emailFilter)
         {
             var reservations = _context.Set<Reservation>()

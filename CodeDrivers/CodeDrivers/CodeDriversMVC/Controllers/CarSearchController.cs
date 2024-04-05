@@ -30,6 +30,7 @@ namespace CodeDriversMVC.Controllers
         {
             startTime = (startTime < DateTime.Now) ? DateTime.Now : startTime;
             endTime = (endTime < DateTime.Now) ? DateTime.Now : endTime;
+
             return RedirectToAction("Create", "Reservation", new { carId = Id, startTime, endTime });
 
         }
