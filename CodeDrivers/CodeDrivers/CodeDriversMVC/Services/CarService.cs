@@ -10,9 +10,11 @@ namespace CodeDriversMVC.Services
     public class CarService : IRepository<Car>
     {
         private readonly CodeDriversContext _context;
-        public CarService(CodeDriversContext context)
+        private readonly ReservationService _reservationService;
+        public CarService(CodeDriversContext context, ReservationService reservationService)
         {
             _context = context;
+            _reservationService = reservationService;
         }
         public void Create(Car car)
         {
@@ -34,6 +36,13 @@ namespace CodeDriversMVC.Services
         public List<Car> GetAll()
         {
             return _context.Set<Car>().ToList();
+        }
+
+        public List<Car> GetAllAvailable(DateTime start, DateTime end)
+        {
+            var reservations = _reservationService.GetAvailableReservationsByPeriod(start, end);
+            var reservedCarsIds = reservations.Select(c => c.Car.Id);
+            return _context.Set<Car>().Where(x => !reservedCarsIds.Contains(x.Id)).ToList();
         }
 
         public void Update(Car updatedCar)

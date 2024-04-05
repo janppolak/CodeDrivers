@@ -30,15 +30,24 @@ namespace CodeDriversMVC.Services
             await _contextAccessor.HttpContext.SignInAsync(CreatePricipal(searchedUser));
             return true;
         }
-
         public ClaimsPrincipal CreatePricipal(User user)
         {
             var claimsPrincipal = new ClaimsPrincipal();
-            var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, $"{user.Name} {user.LastName}"));
-            claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, $"{user.Name} {user.LastName}"),
+                new Claim(ClaimTypes.Email, user.Email)
+            };
+
+            if (user.Email == "codedriversadmin@gmail.com")
+            {
+                claims.Add(new Claim(ClaimTypes.Role, "admin"));
+            }
+
             ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             claimsPrincipal.AddIdentity(identity);
+
+            
             return claimsPrincipal;
         }
     }
