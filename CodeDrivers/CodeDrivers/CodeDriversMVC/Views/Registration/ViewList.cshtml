@@ -1,12 +1,12 @@
-﻿@model IEnumerable<CodeDrivers.Models.User>
+@model IEnumerable<CodeDrivers.Models.User>
 
 @{
     ViewData["Title"] = "ViewList";
 }
 
-<h1>Lista użytkowników</h1>
+<h1 style="text-align:center;">Lista użytkowników</h1>
 
-<p>
+<p style="margin-left: 40%;" class="ViewList">
     <a asp-action="Create">Dodaj nowego użytkownika</a>
 </p>
 <table class="table">
@@ -50,16 +50,17 @@
                     @Html.DisplayFor(modelItem => item.DriversLicenceNumber)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-email="@item.Email">Edytuj</a> |
-                    <a asp-action="Details" asp-route-email="@item.Email">Szczegóły</a> |
-                    <a asp-action="Delete" asp-route-email="@item.Email">Usuń</a>
+                    <a asp-action="Edit" asp-route-email="@item.Email" class="btn btn-edit">Edytuj</a> 
+                    <a asp-action="Details" asp-route-email="@item.Email" class="btn btn-details">Szczegóły</a> 
+                    <a asp-action="Delete" asp-route-email="@item.Email" class="btn btn-delete">Usuń</a>
                 </td>
+
             </tr>
         }
     </tbody>
 </table>
 <style>
-    p a {
+    .ViewList a {
         margin-left: 1rem;
         margin-bottom: 0.5rem;
         border: 1px solid #ccc;
@@ -79,7 +80,7 @@
 
     }
 
-    p a:hover {
+    .ViewList a:hover {
         color: black;
         background-color: white;
         border-color: #54e86f;
@@ -106,5 +107,42 @@
             color: white; 
         }
 
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+    .btn-edit {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+    }
+
+    .btn-details {
+        color: #fff;
+        background-color: #5bc0de;
+        border-color: #46b8da;
+    }
+
+    .btn-delete {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
 
 </style>

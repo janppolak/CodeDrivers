@@ -6,10 +6,10 @@
 
 <h1>Szczegóły</h1>
 
-<div>
+<div class="details-panel">
     <h4>Car</h4>
     <hr />
-    <dl class="row">
+    <dl class="row" style="width: 800px;">
         <dt class = "col-sm-2">
             Id
         </dt>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(model => model.GearTransmission)
         </dd>
         <dt class = "col-sm-2">
-            Dostępność
+            Dostępność: 
         </dt>
-        <dd class = "col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.IsAvailable)
         </dd>
         <dt class = "col-sm-2">
@@ -52,9 +52,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.PricePerDay)
         </dd>
+        <div class="edit-image-car" style="margin-left: 50px;">
+            <img class="edit-image-car" src="~/Images/@Model.ImageFileName" />
+        </div>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="custom-link">Edytuj</a>
-    <a asp-action="Index" class="custom-link">Wróć do listy</a>
+<div class="text-center">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="text-center">Edytuj</a>
+    <a asp-action="Index" class="text-center">Wróć do listy</a>
 </div>

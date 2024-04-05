@@ -1,0 +1,8 @@
+﻿.Reservation-Container #UserEmail,
+.Reservation-Container #ReservationFrom,
+.Reservation-Container #ReservationTo,
+.Reservation-Container #PricePerDay,
+.Reservation-Container #TotalPrice { 
+    text-align: center;
+    background-color: red;
+}
