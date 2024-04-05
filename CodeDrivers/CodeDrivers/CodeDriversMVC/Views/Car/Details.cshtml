@@ -9,7 +9,7 @@
 <div class="details-panel">
     <h4>Car</h4>
     <hr />
-    <dl class="row">
+    <dl class="row" style="width: 800px;">
         <dt class = "col-sm-2">
             Id
         </dt>
@@ -52,6 +52,9 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.PricePerDay)
         </dd>
+        <div class="edit-image-car" style="margin-left: 50px;">
+            <img class="edit-image-car" src="~/Images/@Model.ImageFileName" />
+        </div>
     </dl>
 </div>
 <div class="text-center">

@@ -1,7 +1,7 @@
 ﻿@using CodeDriversMVC.Controllers
 @model IEnumerable<ReservationReportModel>
 
-<h2>Wszystkie rezerwacje</h2>
+<h2 style="text-align:center;">Wszystkie rezerwacje</h2>
 @{
     ViewBag.Title = "Wszystkie rezerwacje";
 }
@@ -88,7 +88,6 @@
                 </th>
             </tr>
         </thead>
-
         <tbody>
             @foreach (var reservation in Model)
             {
@@ -103,6 +102,26 @@
             }
         </tbody>
     </table>
+    <thead>
+        <tr>
+            <td>
+                <h2>Legenda:</h2>
+                <div class="kropka-container">
+                    <span style="background-color:#ccc;" class="kropka"></span>
+                    <span class="tekst">Skończone</span>
+                </div>
+                <div class="kropka-container">
+                    <span style="background-color:#54e86f;" class="kropka"></span>
+                    <span class="tekst">W takcie</span>
+                </div>
+                <div class="kropka-container">
+                    <span style="background-color:#0000FC;" class="kropka"></span>
+                    <span class="tekst">Zaplanowane</span>
+                </div>
+            </td>
+        </tr>
+    </thead>
+    <br />
     <div style="text-align: right; margin-bottom: 10px; font-size: 1.2rem; font-weight: bold">
         <button class="Filter-Car" onclick="generatePDF()" style="background-color:#54e86f; color:white; border: 1px solid #ccc;"
                 onmouseover="this.style.backgroundColor='#ffffff'; this.style.color='black';"
@@ -111,7 +130,24 @@
         </button>
     </div>
 </div>
+<style>
+    .kropka-container {
+        display: flex;
+        align-items: center;
+    }
 
+    .kropka {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .tekst {
+        font-size: 16px;
+    }
+</style>
 <script>
     var previousFilterValues = {};
 

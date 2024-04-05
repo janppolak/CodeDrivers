@@ -5,39 +5,208 @@
     ViewData["Title"] = "Cars";
 }
 <h1 style="text-align:center;">Baza pojazdów</h1>
-
-<div class="car-container" style="text-align:center;">
-    <button style="margin-bottom: 50px;">
-        <a asp-action="Create">Dodaj nowy pojazd</a>
-    </button>
-    <div class="car-grid">
+<p class="car-add-button">
+    <a asp-action="Create">Dodaj nowy pojazd</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Id:</label>
+                <br />
+                <select id="idFilter" onchange="filterTable('idFilter', 0)">
+                    <option value="">Wszystko</option>
+                    @foreach (var id in Model.Select(c => c.Id).Distinct())
+                    {
+                        <option>@id</option>
+                    }
+                </select>
+            </th>
+            <th>
+                <label>Marka:</label>
+                <br />
+                <select id="brandFilter" onchange="filterTable('brandFilter', 1)">
+                    <option value="">Wszystko</option>
+                    @foreach (var brand in Model.Select(c => c.Brand).Distinct())
+                    {
+                        <option>@brand</option>
+                    }
+                </select>
+            </th>
+            <th>
+                <label>Model:</label>
+                <br />
+                <select id="modelFilter" onchange="filterTable('modelFilter', 2)">
+                    <option value="">Wszystko</option>
+                    @foreach (var modelCar in Model.SelectMany(c => c.Models).Distinct())
+                    {
+                        <option>@modelCar</option>
+                    }
+                </select>
+            </th>
+            <th>
+                <label>Segment:</label>
+                <br />
+                <select id="segmentFilter" onchange="filterTable('segmentFilter', 3)">
+                    <option value="">Wszystko</option>
+                    @foreach (var segment in Model.Select(c => c.Segment).Distinct())
+                    {
+                        <option>@segment</option>
+                    }
+                </select>
+            </th>
+            <th>
+                <label>Rodzaj napędu:</label>
+                <br />
+                <select id="motorFilter" onchange="filterTable('motorFilter', 4)">
+                    <option value="">Wszystko</option>
+                    @foreach (var motor in Model.Select(c => c.Motor).Distinct())
+                    {
+                        <option>@motor</option>
+                    }
+                </select>
+            </th>
+            <th>
+                <label>Skrzynia biegów:</label>
+                <br />
+                <select id="gearTransmissionFilter" onchange="filterTable('gearTransmissionFilter', 5)">
+                    <option value="">Wszystko</option>
+                    @foreach (var gearTransmission in Model.Select(c => c.GearTransmission).Distinct())
+                    {
+                        <option>@gearTransmission</option>
+                    }
+                </select>
+            </th>
+            <th>
+                <label>Dostępność:</label>
+                <br />
+                <select id="availabilityFilter" onchange="filterTable('availabilityFilter', 6)">
+                    <option value="">Wszystko</option>
+                    <option>Dostępny</option>
+                    <option>Niedostępny</option>
+                </select>
+            </th>
+            <th>
+                <label>Stawka za dzień:</label>
+                <br />
+                <select id="pricePerDayFilter" onchange="filterTable('pricePerDayFilter', 7)">
+                    <option value="">Wszystko</option>
+                    @foreach (var pricePerDay in Model.Select(c => c.PricePerDay).Distinct())
+                    {
+                        <option>@pricePerDay</option>
+                    }
+                </select>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (var item in Model)
         {
-            <div class="car-card">
-                <div class="car-image">
-                    <img src="~/Images/@item.ImageFileName" alt="Car Image" />
-                </div>
-                <div class="car-details">
-                    <p><strong>Id:</strong> @Html.DisplayFor(modelItem => item.Id)</p>
-                    <p><strong>Marka:</strong> @Html.DisplayFor(modelItem => item.Brand)</p>
-                    <p><strong>Model:</strong> @Html.DisplayFor(modelItem => item.Model)</p>
-                    <p><strong>Segment:</strong> @Html.DisplayFor(modelItem => item.Segment)</p>
-                    <p><strong>Rodzaj napędu:</strong> @Html.DisplayFor(modelItem => item.Motor)</p>
-                    <p><strong>Skrzynia biegów:</strong> @Html.DisplayFor(modelItem => item.GearTransmission)</p>
-                    <p><strong>Dostępność:</strong> @Html.DisplayFor(modelItem => item.IsAvailable)</p>
-                    <p><strong>Stawka za dzień:</strong> @Html.DisplayFor(modelItem => item.PricePerDay)</p>
-                </div>
-                <div class="car-actions">
-                    <div class="action-links">
-                        @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "edit-link btn btn-primary" })
-                        @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "details-link btn btn-info" })
-                        @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "delete-link btn btn-danger" })
-                    </div>
-                </div>
-            </div>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Segment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Motor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GearTransmission)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAvailable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricePerDay)
+                </td>
+                <td>
+                    @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }, new { @class = "btn btn-edit" }) 
+                    @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-details" }) 
+                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-delete" })
+                </td>
+            </tr>
         }
-    </div>
-</div>
+    </tbody>
+</table>
+<style>
+    .car-add-button a {
+        margin-left: 1rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 0.5rem;
+        width: 15rem;
+        height: 2.5rem;
+        font-size: 1rem;
+        text-align: center;
+        font-weight: bold;
+        background-color: #54e86f;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 41%;
+    }
+
+        .car-add-button a:hover {
+            color: black;
+            background-color: white;
+            border-color: #54e86f;
+        }
+
+    .table select {
+        width: 110px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+    .btn-edit {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+    }
+
+    .btn-details {
+        color: #fff;
+        background-color: #5bc0de;
+        border-color: #46b8da;
+    }
+
+    .btn-delete {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+
+</style>
 
 <script>
     function filterTable(filterId, columnIndex) {

@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Create";
 }
-<div style="text-align: center; margin-left: 520px;">
+<div class="Reservation-Panel" style="text-align: center; margin-left: 520px;">
     <div class="col-md-4">
 
         <h1>Rezerwacja pojazdu @Model.Brand @Model.Model</h1>
@@ -62,6 +62,55 @@
 <div class="text-center">
     <a asp-controller="Home" asp-action="Index">Wróć do wyboru aut</a>
 </div>
+<style>
+    .Reservation-Panel {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-align: center;
+        margin-left: 520px;
+    }
+
+        .Reservation-Panel .col-md-4 {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Reservation-Panel h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .Reservation-Panel p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .Reservation-Panel form {
+            margin-top: 20px;
+        }
+
+        .Reservation-Panel .form-group {
+            margin-bottom: 20px;
+        }
+
+        .Reservation-Panel label {
+            font-weight: bold;
+        }
+
+        .Reservation-Panel input[type="date"],
+        .Reservation-Panel input[type="number"] {
+            text-align: center;
+        }
+
+        .Reservation-Panel .form-control[readonly] {
+            background-color: #f8f9fa;
+            cursor: not-allowed;
+        }
+
+</style>
 
 @section Scripts {
     @{

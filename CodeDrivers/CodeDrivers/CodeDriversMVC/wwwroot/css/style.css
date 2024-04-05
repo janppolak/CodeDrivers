@@ -132,7 +132,7 @@ body a:hover{
     padding: 40px;
     width: 350px;
     max-width: 80%;
-    margin-left: 500px;
+    margin-left: 30rem;
     margin-top: 9rem;
     text-align: center;
 }
@@ -140,6 +140,9 @@ body a:hover{
     .login-panel h1 {
         margin-bottom: 20px;
         color: #333;
+    }
+    .login-panel div:nth-child(2){
+        width: 250px;
     }
 
 .form-group {
@@ -216,6 +219,43 @@ label {
     .register-panel h1 {
         margin-bottom: 20px;
         color: #333;
+    }
+    .register-panel div:nth-child(1) {
+        width: 430px;
+    }
+    .register-panel div:nth-child(2) {
+        width: 430px;
+    }
+    .register-panel div:nth-child(3) {
+        width: 410px;
+    }
+    .register-panel div:nth-child(4) {
+        width: 430px;
+    }
+    .register-panel div:nth-child(5){
+        width: 410px;
+    }
+    .register-panel div:nth-child(6) {
+        width: 410px;
+    }
+    .register-panel div:nth-child(7) {
+        width: 410px;
+    }
+    .register-panel div:nth-child(8) {
+        width: 430px;
+    }
+    .register-panel div:nth-child(9) {
+        width: 430px;
+    }
+    .register-panel div:nth-child(10) {
+        width: 410px;
+    }
+
+    .register-panel div:nth-child(11) {
+        margin-left: -10px;
+        width: 430px;
+    }
+    .register-panel div > * > *{
     }
 
 .form-group {
@@ -735,8 +775,9 @@ label {
     justify-content: center;
     margin-top: 20px;
     border-radius: 2rem;
-    width: 8rem;
+    width: 9rem;
     background-color: #007bff;
+    color:white;
 }
 
     .back-container a {
