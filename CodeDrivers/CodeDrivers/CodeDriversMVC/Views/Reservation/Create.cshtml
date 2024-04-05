@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Create";
 }
-<div class="login-panel">
+<div class="Reservation-Panel" style="text-align: center; margin-left: 520px;">
     <div class="col-md-4">
 
         <h1>Rezerwacja pojazdu @Model.Brand @Model.Model</h1>
@@ -23,18 +23,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="ReservationFrom" class="control-label">Początek rezerwacji</label>
-                <input asp-for="ReservationFrom" id="ReservationFrom" class="form-control" type="date" value="@(((DateTime)ViewData["DateStart"]).ToString("yyyy-MM-dd"))" />
+                <input asp-for="ReservationFrom" id="ReservationFrom" class="form-control" style="text-align:center;" type="date" value="@(((DateTime)ViewData["DateStart"]).ToString("yyyy-MM-dd"))" />
                 <span asp-validation-for="ReservationFrom" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ReservationTo" class="control-label">Koniec rezerwacji</label>
-                <input asp-for="ReservationTo" id="ReservationTo" class="form-control" type="date" value="@(((DateTime)ViewData["DateEnd"]).ToString("yyyy-MM-dd"))" />
+                <input asp-for="ReservationTo" id="ReservationTo" class="form-control" style="text-align:center;" type="date" value="@(((DateTime)ViewData["DateEnd"]).ToString("yyyy-MM-dd"))" />
                 <span asp-validation-for="ReservationTo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PricePerDay" class="control-label">Cena za dzień wynajmu</label>
                 <div class="input-group">
-                    <input asp-for="PricePerDay" type="number" id="PricePerDay" class="form-control" readonly style="background-color: #f8f9fa; cursor: not-allowed;" />
+                    <input asp-for="PricePerDay" type="number" id="PricePerDay" style="text-align:center;" class="form-control" readonly style="background-color: #f8f9fa; cursor: not-allowed;" />
                     <div class="input-group-append">
                         <span class="input-group-text">zł</span>
                     </div>
@@ -59,9 +59,58 @@
     </div>
 </div>
 
-<div style="display: flex; justify-content: center;">
+<div class="text-center">
     <a asp-controller="Home" asp-action="Index">Wróć do wyboru aut</a>
 </div>
+<style>
+    .Reservation-Panel {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-align: center;
+        margin-left: 520px;
+    }
+
+        .Reservation-Panel .col-md-4 {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .Reservation-Panel h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .Reservation-Panel p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .Reservation-Panel form {
+            margin-top: 20px;
+        }
+
+        .Reservation-Panel .form-group {
+            margin-bottom: 20px;
+        }
+
+        .Reservation-Panel label {
+            font-weight: bold;
+        }
+
+        .Reservation-Panel input[type="date"],
+        .Reservation-Panel input[type="number"] {
+            text-align: center;
+        }
+
+        .Reservation-Panel .form-control[readonly] {
+            background-color: #f8f9fa;
+            cursor: not-allowed;
+        }
+
+</style>
 
 @section Scripts {
     @{
