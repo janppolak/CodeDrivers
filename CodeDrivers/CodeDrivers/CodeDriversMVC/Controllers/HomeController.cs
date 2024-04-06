@@ -41,13 +41,13 @@ namespace CodeDriversMVC.Controllers
                 && Enum.TryParse(gearTypeDropdownText, out GearType gearType)
                 && Enum.TryParse(motorTypeDropdownText, out MotorType motorType))
             {
-                var carsByFilters = _carService.GetByAllFilters(brand, segment,gearType,motorType);
+                var carsByFilters = _carService.GetByAllFilters(brand, segment,gearType,motorType, dateStart, dateEnd);
                 return View(carsByFilters);
             }
             if (searchTextBrand == "Wszystko")
             {
-                var availableCars = _carService.GetAllAvailable(dateStart, dateEnd);
-                return View(availableCars);
+                var allCars = _carService.GetAll();
+                return View(allCars);
             }
 
 

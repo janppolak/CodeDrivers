@@ -18,6 +18,7 @@ namespace CodeDriversMVC.Services
         }
         public void Create(Car car)
         {
+            car.IsAvailable = true;
             _context.Set<Car>().Add(car);
             _context.SaveChanges();
         }
@@ -29,10 +30,29 @@ namespace CodeDriversMVC.Services
         {
             return _context.Set<Car>().Where(car => car.Brand == brand).ToList();
         }
-        public List<Car> GetByAllFilters(CarBrand brand, CarSegment segment, GearType gearType, MotorType motorType)
+        public List<Car> GetByAllFilters(CarBrand brand, CarSegment segment, GearType gearType, MotorType motorType, DateTime start, DateTime end)
         {
-            return _context.Set<Car>().Where(car => car.Brand == brand && car.Segment == segment && car.GearTransmission == gearType && car.Motor == motorType).ToList();
+            var reservations = _reservationService.GetAvailableReservationsByPeriod(start, end);
+            var reservedCarsIds = reservations.Select(c => c.Car.Id);
+
+
+            //return _context.Set<Car>()
+            //               .Where(car => (car.Brand == brand &&
+            //                              car.Segment == segment &&
+            //                              car.GearTransmission == gearType &&
+            //                              car.Motor == motorType) &&
+            //                              !reservedCarsIds.Contains(car.Id))
+            //                              .ToList();
+            return _context.Set<Car>()
+    .Where(car => !reservedCarsIds.Contains(car.Id))
+    .Where(car => (brand == null || car.Brand == brand) &&
+                  (segment == null || car.Segment == segment) &&
+                  (gearType == null || car.GearTransmission == gearType) &&
+                  (motorType == null || car.Motor == motorType))
+    .ToList();
+
         }
+
         public List<Car> GetAll()
         {
             return _context.Set<Car>().ToList();
