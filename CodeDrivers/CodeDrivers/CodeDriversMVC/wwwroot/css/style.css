@@ -755,7 +755,7 @@ label {
 }
 
 .btn-primary {
-    width: calc(100% - 22px); /* 22px to kompensacja paddingu */
+    width: calc(100% - 22px);
     padding: 10px;
     border: none;
     border-radius: 5px;
