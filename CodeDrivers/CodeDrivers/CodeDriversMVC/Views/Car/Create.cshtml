@@ -52,7 +52,7 @@
                 <span asp-validation-for="PricePerDay" class="text-danger"></span>
                 <span class="text-danger">@Html.ValidationMessage("PriceIsLessThan50Error")</span>
             </div>
-            <div class="form-field">
+            <div class="form-field" style="max-width: 300px; max-height: 168px;">
                 <label asp-for="ImageFile" class="control-label smaller-label">Zdjęcie</label>
                 <input asp-for="ImageFile" type="file" class="form-control" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
