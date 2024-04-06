@@ -36,21 +36,13 @@ namespace CodeDriversMVC.Services
             var reservedCarsIds = reservations.Select(c => c.Car.Id);
 
 
-            //return _context.Set<Car>()
-            //               .Where(car => (car.Brand == brand &&
-            //                              car.Segment == segment &&
-            //                              car.GearTransmission == gearType &&
-            //                              car.Motor == motorType) &&
-            //                              !reservedCarsIds.Contains(car.Id))
-            //                              .ToList();
             return _context.Set<Car>()
-    .Where(car => !reservedCarsIds.Contains(car.Id))
-    .Where(car => (brand == null || car.Brand == brand) &&
-                  (segment == null || car.Segment == segment) &&
-                  (gearType == null || car.GearTransmission == gearType) &&
-                  (motorType == null || car.Motor == motorType))
-    .ToList();
-
+                           .Where(car => (car.Brand == brand &&
+                                          car.Segment == segment &&
+                                          car.GearTransmission == gearType &&
+                                          car.Motor == motorType) &&
+                                          !reservedCarsIds.Contains(car.Id))
+                                          .ToList();
         }
 
         public List<Car> GetAll()
