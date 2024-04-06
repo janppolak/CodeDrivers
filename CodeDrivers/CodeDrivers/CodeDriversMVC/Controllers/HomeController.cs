@@ -44,13 +44,16 @@ namespace CodeDriversMVC.Controllers
                 var carsByFilters = _carService.GetByAllFilters(brand, segment,gearType,motorType, dateStart, dateEnd);
                 return View(carsByFilters);
             }
+            else if (searchTextBrand == "Wszystko" && dateStart != null && dateEnd != null)
+            {
+                var carsOnlyByPeriod = _carService.GetByPeriod(dateStart, dateEnd);
+                return View(carsOnlyByPeriod);
+            }
             if (searchTextBrand == "Wszystko")
             {
                 var allCars = _carService.GetAll();
                 return View(allCars);
             }
-
-
             return View();
         }
 
