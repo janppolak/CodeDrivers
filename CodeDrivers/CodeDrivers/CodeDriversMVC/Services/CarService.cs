@@ -45,6 +45,15 @@ namespace CodeDriversMVC.Services
                                           .ToList();
         }
 
+        public List<Car> GetByPeriod(DateTime start, DateTime end)
+        {
+            var reservations = _reservationService.GetAvailableReservationsByPeriod(start, end);
+            var reservedCarsIds = reservations.Select(c => c.Car.Id);
+
+
+            return _context.Set<Car>().Where(x => !reservedCarsIds.Contains(x.Id)).ToList();
+        }
+
         public List<Car> GetAll()
         {
             return _context.Set<Car>().ToList();

@@ -39,7 +39,7 @@ namespace CodeDriversMVC.Services
                 new Claim(ClaimTypes.Email, user.Email)
             };
 
-            if (user.Email == "admincd@gmail.com")
+            if (user.Email == "codedrivers@wp.pl")
             {
                 claims.Add(new Claim(ClaimTypes.Role, "admin"));
             }
