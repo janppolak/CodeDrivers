@@ -1,18 +1,70 @@
 ﻿@{
     ViewData["Title"] = "ChooseLoginOrRegistration";
 }
-<div class="login-panel">
+<div class="ChooseLogin">
     <div class="col-md-4">
-    <h1>Wybierz właściwą opcję</h1>
-    <p>Aby dokonać rezerwacji pojazdu, zaloguj się lub zarejestruj</p>
-    <hr />
+        <h1>Wybierz właściwą opcję</h1>
+        <p>Aby dokonać rezerwacji pojazdu, zaloguj się lub zarejestruj</p>
+        <form asp-controller="Login" asp-action="Index" method="post">
+            <input type="submit" value="Logowanie" class="btn-custom btn btn-primary mr-2" />
+        </form>
+        <form asp-controller="Registration" asp-action="Index" method="get">
+            <input type="submit" value="Rejestracja" class="btn-custom btn btn-primary" />
+        </form>
+    </div>
 </div>
-</div>
-<div style="display: flex; justify-content: center;" class="button-container">
-    <form asp-controller="Login" asp-action="Index" method="post">
-        <input type="submit" value="Logowanie" class="btn-custom btn btn-primary mr-2" />
-    </form>
-    <form asp-controller="Registration" asp-action="Index" method="get">
-        <input type="submit" value="Rejestracja" class="btn-custom btn btn-primary" />
-    </form>
-</div>
+<style>
+    .ChooseLogin {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        text-align: center;
+        margin-left: 520px;
+    }
+
+        .ChooseLogin .col-md-4 {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 35rem;
+            margin-left: -8.3rem;
+        }
+
+        .ChooseLogin h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .ChooseLogin p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .ChooseLogin form {
+            margin-top: 20px;
+        }
+
+        .ChooseLogin .form-group {
+            margin-bottom: 20px;
+        }
+
+        .ChooseLogin label {
+            font-weight: bold;
+        }
+
+        .ChooseLogin input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+        }
+
+            .ChooseLogin input[type="submit"]:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+</style>
