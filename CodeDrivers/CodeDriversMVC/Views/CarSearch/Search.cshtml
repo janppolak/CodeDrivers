@@ -10,34 +10,96 @@
         <h1>Wyszukaj pojazd</h1>
         <div class="Filter-Car">
             <select id="brandDropdown" name="searchTextBrand">
-                <option value="Wszystko">Wszystko</option>
+
+                @if ((string)ViewData["SearchTextBrand"] == "Wszystko")
+                {
+                    <option value="Wszystko" selected>Wszystko</option>
+                }
+                else
+                {
+                    <option value="Wszystko">Wszystko</option>
+                }
                 @foreach (var carBrand in Enum.GetValues(typeof(CarBrand)))
                 {
-                    <option>@carBrand</option>
+                    @if (carBrand.ToString() == (string)ViewData["SearchTextBrand"])
+                    {
+                        <option value="@carBrand" selected>@carBrand</option>
+                    }
+                    else
+                    {
+                        <option value="@carBrand">@carBrand</option>
+                    }
                 }
             </select>
+
             <select id="segmentDropdown" name="segmentDropdownText">
+                @if ((string)ViewData["SegmentDropdownText"] == "Wszystko")
+                {
+                    <option value="Wszystko" selected>Wszystko</option>
+                }
+                else
+                {
+                    <option value="Wszystko">Wszystko</option>
+                }
                 @foreach (var carSegment in Enum.GetValues(typeof(CarSegment)))
                 {
-                    <option>@carSegment</option>
+                    @if (carSegment.ToString() == (string)ViewData["SegmentDropdownText"])
+                    {
+                        <option value="@carSegment" selected>@carSegment</option>
+                    }
+                    else
+                    {
+                        <option value="@carSegment">@carSegment</option>
+                    }
                 }
             </select>
             <select id="gearTypeDropdown" name="gearTypeDropdownText">
+                @if ((string)ViewData["GearTypeDropdownText"] == "Wszystko")
+                {
+                    <option value="Wszystko" selected>Wszystko</option>
+                }
+                else
+                {
+                    <option value="Wszystko">Wszystko</option>
+                }
                 @foreach (var gearType in Enum.GetValues(typeof(GearType)))
                 {
-                    <option>@gearType</option>
+                    @if (gearType.ToString() == (string)ViewData["GearTypeDropdownText"])
+                    {
+                        <option value="@gearType" selected>@gearType</option>
+                    }
+                    else
+                    {
+                        <option value="@gearType">@gearType</option>
+                    }
                 }
             </select>
             <select id="motorTypeDropdown" name="motorTypeDropdownText">
+                @if ((string)ViewData["MotorTypeDropdownText"] == "Wszystko")
+                {
+                    <option value="Wszystko" selected>Wszystko</option>
+                }
+                else
+                {
+                    <option value="Wszystko">Wszystko</option>
+                }
                 @foreach (var motorType in Enum.GetValues(typeof(MotorType)))
                 {
-                    <option>@motorType</option>
+                    @if (motorType.ToString() == (string)ViewData["MotorTypeDropdownText"])
+                    {
+                        <option value="@motorType" selected>@motorType</option>
+                    }
+                    else
+                    {
+                        <option value="@motorType">@motorType</option>
+                    }
                 }
             </select>
             <label>Początek:</label>
-            <input type="date" data-val="true" data-val-required="To pole jest wymagane." name="dateStart" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            <input type="date" data-val="true" data-val-required="To pole jest wymagane." name="dateStart" value="@((DateTime)(ViewData["DateStart"] ?? DateTime.Now))" />
             <label>Koniec:</label>
-            <input type="date" data-val="true" data-val-required="To pole jest wymagane." name="dateEnd" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            <input type="date" data-val="true" data-val-required="To pole jest wymagane." name="dateEnd" value="@((DateTime)(ViewData["DateEnd"] ?? DateTime.Now))" />
+
             <button type="submit">Wyszukaj</button>
 
         </div>

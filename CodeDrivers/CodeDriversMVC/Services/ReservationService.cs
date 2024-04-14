@@ -20,7 +20,6 @@ namespace CodeDriversMVC.Services
         public ReservationResultModel ReserveCar(ReservationRequestModel model)
         {
             var carToReserve = _context.Set<Car>().FirstOrDefault(car => car.Id == model.CarId);
-            carToReserve.IsAvailable = false;
 
             var owner = _context.Set<User>().FirstOrDefault(user => user.Email.ToLower() == model.UserEmail.ToLower());
 
