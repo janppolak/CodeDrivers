@@ -1,7 +1,6 @@
 using CodeDrivers.Models;
 using CodeDrivers.Models.Car;
 using CodeDriversMVC.Models;
-using CodeDrivers.Repository;
 using CodeDriversMVC.Services.Interfaces;
 using CodeDriversMVC.DataAccess;
 

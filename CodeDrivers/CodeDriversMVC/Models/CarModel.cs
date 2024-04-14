@@ -1,5 +1,4 @@
 ﻿using CodeDrivers.Models.Car;
-using CodeDrivers.Repository;
 using Microsoft.Extensions.FileProviders.Physical;
 
 namespace CodeDriversMVC.Models
