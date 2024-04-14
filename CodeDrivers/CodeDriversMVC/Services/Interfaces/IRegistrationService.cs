@@ -6,6 +6,6 @@ namespace CodeDriversMVC.Services.Interfaces
     {
         User GetByEmail(string email);
         void Remove(string email);
-        bool CheckIfEmailExits(string email);
+        bool IsEmailRegistered(string email);
     }
 }

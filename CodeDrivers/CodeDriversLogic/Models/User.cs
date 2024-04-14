@@ -24,10 +24,6 @@ namespace CodeDrivers.Models
         public string PhoneNumber { get; set; }
         public string DriversLicenceNumber { get; set; }
        
-        List<User> Users { get; set; } = new List<User>();
-       
-
-
     }
 }
 

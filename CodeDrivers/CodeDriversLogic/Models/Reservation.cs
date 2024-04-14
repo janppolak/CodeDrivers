@@ -15,18 +15,6 @@ namespace CodeDrivers.Models.Car
         public decimal TotalReservationPrice { get; set; }
         public Car Car { get; set; }
         public User Owner { get; set; }
-        public Reservation()
-        {
-            
-        }
-        public Reservation(Car car, User user,  DateTime reservationFrom, DateTime reservationTo, decimal totalReservationPrice)
-        {
-            Car = car;
-            Owner = user;
-            ReservationFrom = reservationFrom;
-            ReservationTo = reservationTo;
-            DurationTime = ReservationTo - ReservationFrom;
-            TotalReservationPrice = totalReservationPrice; 
-        }
+
     }
 }

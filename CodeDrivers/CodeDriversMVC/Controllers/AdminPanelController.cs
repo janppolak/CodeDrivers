@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CodeDriversMVC.Controllers
 {
-    public class PanelAdminController : Controller
+    public class AdminPanelController : Controller
     {
         
         // GET: PanelAdminController

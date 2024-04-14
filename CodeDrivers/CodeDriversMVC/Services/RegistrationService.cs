@@ -10,7 +10,6 @@ namespace CodeDriversMVC.Services
 {
     public class RegistrationService : IRegistrationService
     {
-
         private readonly CodeDriversContext _context;
         public RegistrationService(CodeDriversContext context)
         {
@@ -21,7 +20,7 @@ namespace CodeDriversMVC.Services
         {
             return _context.Set<User>().FirstOrDefault(u => u.Email == email);
         }
-        public bool CheckIfEmailExits(string email)
+        public bool IsEmailRegistered(string email)
         {
             return _context.Set<User>().FirstOrDefault(u => u.Email == email) != null;
         }
@@ -85,8 +84,6 @@ namespace CodeDriversMVC.Services
                 _context.SaveChanges();
             }
         }
-
-
         public void RemoveUser(string email)
         {
             User userToBeRemoved = GetByEmail(email);
@@ -96,8 +93,6 @@ namespace CodeDriversMVC.Services
                 _context.SaveChanges();
             }
         }
-
-
         public User GetById(int id)
         {
             throw new NotImplementedException();
