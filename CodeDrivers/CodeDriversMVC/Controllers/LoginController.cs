@@ -1,5 +1,6 @@
 ﻿using CodeDrivers.Models;
 using CodeDriversMVC.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +37,12 @@ namespace CodeDriversMVC.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
 
         // POST: LoginController/Create
         [HttpPost]

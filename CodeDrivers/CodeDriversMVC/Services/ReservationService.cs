@@ -49,7 +49,6 @@ namespace CodeDriversMVC.Services
             return reservationResult;
         }
 
-
         public List<ReservationReportModel> GetAllReservations()
         {
             var reservations = _context.Set<Reservation>().Include(reservation => reservation.Car).Include(reservation => reservation.Owner).ToList();

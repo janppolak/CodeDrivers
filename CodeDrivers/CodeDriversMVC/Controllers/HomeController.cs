@@ -4,7 +4,6 @@ using System.Diagnostics;
 using CodeDrivers.Models.Car;
 using CodeDrivers;
 using CodeDriversMVC.Services;
-using CodeDrivers.Repository;
 using CodeDriversMVC.DataAccess;
 
 namespace CodeDriversMVC.Controllers
