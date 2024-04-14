@@ -12,20 +12,18 @@ namespace CodeDriversMVC.Controllers
     {
         private const string Path = @"fakeUsers.json";
 
-        // GET: RegistrationController
-        //RegistrationService _registrationService = new RegistrationService();
 
         private readonly RegistrationService _registrationService;
+        private readonly UserValidationHelper _validationHelper;
 
-        public RegistrationController(RegistrationService registrationService)
+        public RegistrationController(RegistrationService registrationService, UserValidationHelper validationHelper)
         {
             _registrationService = registrationService;
+            _validationHelper = validationHelper;
         }
 
         public ActionResult Index()
         {
-            
-            
             ViewData["ShowToast"] = true;
 
             return View();
@@ -34,34 +32,33 @@ namespace CodeDriversMVC.Controllers
         [HttpPost]
         public ActionResult Register(User user)
         {
-            var validator = new UserValidationHelper();
 
-            if (!validator.IsValidPassword(user.Password))
+            if (!_validationHelper.IsValidPassword(user.Password))
             {
                 ModelState.AddModelError("PasswordValidationError", "Hasło musi składać się z co najmniej 8 znaków w tym co najmniej jednej cyfry.");
                 return View("Index", user);
             }
-            else if (!validator.IsConfirmedPassword(user.Password, Request.Form["PasswordConfirmation"]))
+            else if (!_validationHelper.IsConfirmedPassword(user.Password, Request.Form["PasswordConfirmation"]))
             {
                 ModelState.AddModelError("PasswordValidationError", "Hasła nie są zgodne!");
                 return View("Index", user);
             }
-            else if (!validator.IsValidEmail(user.Email))
+            else if (!_validationHelper.IsValidEmail(user.Email))
             {
                 ModelState.AddModelError("EmailValidationError", "Wprowadzono niepoprawny e-mail");
                 return View("Index", user);
             }
-            else if (!validator.IsValidPhoneNumber(user.PhoneNumber))
+            else if (!_validationHelper.IsValidPhoneNumber(user.PhoneNumber))
             {
                 ModelState.AddModelError("PhoneValidationError", "Numer telefonu powinien składać się z 9 cyfr nieodzielonych odstępami.");
                 return View("Index", user);
             }
-            else if (!validator.IsMoreThan18(user.DateOfBirth))
+            else if (!_validationHelper.IsMoreThan18(user.DateOfBirth))
             {
                 ModelState.AddModelError("DateOfBirthValidationError", "Aby zarezerwować samochód, musisz mieć ukończone 18 lat.");
                 return View("Index", user);
             }
-            else if(_registrationService.CheckIfEmailExits(user.Email))
+            else if(_registrationService.IsEmailRegistered(user.Email))
             {
                 ModelState.AddModelError("UserAlreadyExists", "Użytkownik o tym adresie e-mail już istnieje.");
                 return View("Index", user);

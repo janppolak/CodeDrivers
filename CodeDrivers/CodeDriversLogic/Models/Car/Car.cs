@@ -12,8 +12,10 @@ namespace CodeDrivers.Models.Car
 	{
 		public int Id { get; set; }
 		public CarBrand Brand { get; set; }
-        public List<string> CarBrandNames => Enum.GetNames(typeof(CarBrand)).ToList();
-        public List<string> Models => BrandToModelsDict.First(f => f.Key == Brand).Value;
+
+		//public List<string> CarBrandNames => Enum.GetNames(typeof(CarBrand)).ToList();
+		// ^^ pewnie do usunięcia 0 - obserwować
+		public List<string> Models => BrandToModelsDict.First(c => c.Key == Brand).Value;
 		public string Model { get; set; }
 		public CarSegment Segment { get; set; } 
 		public MotorType Motor { get; set; } 

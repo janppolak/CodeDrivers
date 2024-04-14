@@ -59,7 +59,7 @@ namespace CodeDriversMVC.Services
             throw new NotImplementedException();
         }
 
-        public bool CheckIfEmailExits(string email)
+        public bool IsEmailRegistered(string email)
         {
             throw new NotImplementedException();
         }

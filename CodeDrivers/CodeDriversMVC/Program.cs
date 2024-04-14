@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using System.Threading.RateLimiting;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using CodeDrivers;
 
 namespace CodeDriversMVC
 {
@@ -21,6 +22,7 @@ namespace CodeDriversMVC
             builder.Services.AddScoped<CarService>();
             builder.Services.AddScoped<LoginService>();
             builder.Services.AddScoped<ReservationService>();
+            builder.Services.AddScoped<UserValidationHelper>();
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddAuthentication().AddCookie();
