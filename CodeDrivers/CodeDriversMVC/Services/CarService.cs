@@ -30,7 +30,7 @@ namespace CodeDriversMVC.Services
         {
             return _context.Set<Car>().Where(car => car.Brand == brand).ToList();
         }
-        public List<Car> GetByAllFilters(CarBrand brand, CarSegment segment, GearType gearType, MotorType motorType, DateTime start, DateTime end)
+        public List<Car> GetByAllFilters(CarBrand? brand, CarSegment? segment, GearType? gearType, MotorType? motorType, DateTime start, DateTime end)
         {
             var reservations = _reservationService.GetAvailableReservationsByPeriod(start, end);
             var reservedCarsIds = reservations.Select(c => c.Car.Id);

@@ -24,37 +24,51 @@ namespace CodeDriversMVC.Controllers
 
         public async Task<IActionResult> Index()
         {
-            ViewBag.CarBrand = Enum.GetValues(typeof(CarBrand)).Cast<CarBrand>();
-            var allCars = _carService.GetAll();
+            ViewData["DateStart"] = DateTime.Now;
+            ViewData["DateEnd"] = DateTime.Now;
+
+            var carsByPeriod = _carService.GetByPeriod(DateTime.Now, DateTime.Now);
 
             var result = await CatService.GetCatFunFactAsync();
 
-            return View(allCars);
+            return View(carsByPeriod);
         }
         [HttpPost]
-        public IActionResult Index(string searchTextBrand, string segmentDropdownText, string gearTypeDropdownText, string motorTypeDropdownText, DateTime dateStart, DateTime dateEnd)
+        public IActionResult Index(string? searchTextBrand, string? segmentDropdownText, string? gearTypeDropdownText, string? motorTypeDropdownText, DateTime dateStart, DateTime dateEnd)
         {
+            IEnumerable<Car> filteredCars = _carService.GetAll();
+            
+            if (!string.IsNullOrEmpty(searchTextBrand) && Enum.TryParse(searchTextBrand, out CarBrand brand))
+            {
+                filteredCars = filteredCars.Where(car => car.Brand == brand);
+            }
+
+            if (!string.IsNullOrEmpty(segmentDropdownText) && Enum.TryParse(segmentDropdownText, out CarSegment segment))
+            {
+                filteredCars = filteredCars.Where(car => car.Segment == segment);
+            }
+
+            if (!string.IsNullOrEmpty(gearTypeDropdownText) && Enum.TryParse(gearTypeDropdownText, out GearType gearType))
+            {
+                filteredCars = filteredCars.Where(car => car.GearTransmission == gearType);
+            }
+
+            if (!string.IsNullOrEmpty(motorTypeDropdownText) && Enum.TryParse(motorTypeDropdownText, out MotorType motorType))
+            {
+                filteredCars = filteredCars.Where(car => car.Motor == motorType);
+            }
+            var carsByPeriod = _carService.GetByPeriod(dateStart, dateEnd);
+            filteredCars = filteredCars.Intersect(carsByPeriod);
+
+            ViewData["SearchTextBrand"] = searchTextBrand;
+            ViewData["SegmentDropdownText"] = segmentDropdownText;
+            ViewData["GearTypeDropdownText"] = gearTypeDropdownText;
+            ViewData["MotorTypeDropdownText"] = motorTypeDropdownText;
             ViewData["DateStart"] = dateStart;
             ViewData["DateEnd"] = dateEnd;
-            if (Enum.TryParse(searchTextBrand, out CarBrand brand)
-                && Enum.TryParse(segmentDropdownText, out CarSegment segment)
-                && Enum.TryParse(gearTypeDropdownText, out GearType gearType)
-                && Enum.TryParse(motorTypeDropdownText, out MotorType motorType))
-            {
-                var carsByFilters = _carService.GetByAllFilters(brand, segment,gearType,motorType, dateStart, dateEnd);
-                return View(carsByFilters);
-            }
-            else if (searchTextBrand == "Wszystko" && dateStart != null && dateEnd != null)
-            {
-                var carsOnlyByPeriod = _carService.GetByPeriod(dateStart, dateEnd);
-                return View(carsOnlyByPeriod);
-            }
-            if (searchTextBrand == "Wszystko")
-            {
-                var allCars = _carService.GetAll();
-                return View(allCars);
-            }
-            return View();
+
+
+            return View(filteredCars);
         }
 
         public IActionResult About()
@@ -62,7 +76,6 @@ namespace CodeDriversMVC.Controllers
             return View();
         }
         [HttpPost]
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
