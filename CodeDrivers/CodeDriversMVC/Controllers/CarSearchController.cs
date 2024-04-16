@@ -23,7 +23,6 @@ namespace CodeDriversMVC.Controllers
             return View(new Car());
         }
 
-
         // POST: CarSearchController/Reservation
         [HttpPost]
         public ActionResult Reservation(int Id, DateTime startTime, DateTime endTime)
