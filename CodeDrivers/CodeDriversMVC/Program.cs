@@ -1,10 +1,5 @@
 using CodeDriversMVC.DataAccess;
 using CodeDriversMVC.Services;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using System.Threading.RateLimiting;
-using System.Globalization;
-using Microsoft.AspNetCore.Localization;
 using CodeDrivers;
 
 namespace CodeDriversMVC

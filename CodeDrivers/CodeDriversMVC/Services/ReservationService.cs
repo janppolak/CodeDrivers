@@ -11,7 +11,10 @@ namespace CodeDriversMVC.Services
     public class ReservationService
     {
         private readonly CodeDriversContext _context;
-
+        public ReservationService()
+        {
+            
+        }
         public ReservationService(CodeDriversContext context)
         {
             _context = context;

@@ -3,7 +3,6 @@ using CodeDrivers.Models.Car;
 using CodeDriversMVC.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System.Reflection.Metadata;
 
 namespace CodeDriversTests
 {
