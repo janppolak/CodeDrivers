@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeDrivers", "CodeDrivers\CodeDrivers.csproj", "{8D83DEC4-F74B-4FA5-81E6-B125A51192B2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeDriversLogic", "CodeDriversLogic\CodeDriversLogic.csproj", "{3400BB85-BDCB-4E5B-940F-8C10CAD0F795}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeDriversMVC", "CodeDriversMVC\CodeDriversMVC.csproj", "{B84BF869-605A-44B7-89C7-B12B94A466FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeDriversTests", "CodeDriversTests\CodeDriversTests.csproj", "{C057883B-D060-4824-823D-6E0B2B9E6B2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeDriversTests", "CodeDriversTests\CodeDriversTests.csproj", "{C057883B-D060-4824-823D-6E0B2B9E6B2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8D83DEC4-F74B-4FA5-81E6-B125A51192B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D83DEC4-F74B-4FA5-81E6-B125A51192B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D83DEC4-F74B-4FA5-81E6-B125A51192B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D83DEC4-F74B-4FA5-81E6-B125A51192B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3400BB85-BDCB-4E5B-940F-8C10CAD0F795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3400BB85-BDCB-4E5B-940F-8C10CAD0F795}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3400BB85-BDCB-4E5B-940F-8C10CAD0F795}.Release|Any CPU.ActiveCfg = Release|Any CPU

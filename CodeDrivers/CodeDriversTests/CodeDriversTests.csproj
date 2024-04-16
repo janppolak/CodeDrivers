@@ -26,7 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CodeDriversLogic\CodeDriversLogic.csproj" />
     <ProjectReference Include="..\CodeDriversMVC\CodeDriversMVC.csproj" />
-    <ProjectReference Include="..\CodeDrivers\CodeDrivers.csproj" />
   </ItemGroup>
 
 </Project>
