@@ -25,12 +25,14 @@
                 </div>
                 <div>
                     <a asp-area="" asp-controller="Home" asp-action="About">O nas</a>
-                    <a asp-area="" asp-controller="Registration" asp-action="Index">Rejestracja</a>
+                    
                     @if (!User.Identity.IsAuthenticated)
                     {
                         <a asp-area="" asp-controller="Login" asp-action="Index">Logowanie</a>
+                        <a asp-area="" asp-controller="Registration" asp-action="Index">Rejestracja</a>
                     }else
                     {
+                        <a asp-area="" asp-controller="UserReservations" asp-action="Index">Moje rezerwacje</a>
                         if (User.IsInRole("admin"))
                         {
                             <a asp-area="" asp-controller="AdminPanel" asp-action="Index">Panel Admina</a>

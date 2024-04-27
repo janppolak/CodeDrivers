@@ -17,6 +17,7 @@ namespace CodeDriversTests
             }.AsQueryable();
 
             var mockSet = new Mock<DbSet<Car>>();
+
             mockSet.As<IQueryable<Car>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Car>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Car>>().Setup(m => m.ElementType).Returns(data.ElementType);
@@ -24,11 +25,10 @@ namespace CodeDriversTests
 
             var mockContext = new Mock<CodeDriversMVC.DataAccess.CodeDriversContext>();
             mockContext.Setup(c => c.Cars).Returns(mockSet.Object);
-
-            var mockRevervationService = new Mock<ReservationService>(); 
+            var mockRevervationService = new Mock<ReservationService>(mockContext.Object);
             var carService = new CarService(mockContext.Object, mockRevervationService.Object);
 
-            var newCar = new Car { Id = 2, Brand = CarBrand.BMW, Model = "X5", Motor = MotorType.Diesel, GearTransmission = GearType.Automatyczna, IsAvailable = true };
+            var newCar = new Car { Brand = CarBrand.BMW, Motor = MotorType.Diesel, GearTransmission = GearType.Automatyczna, IsAvailable = true, PricePerDay = 120 };
 
             // Act
             carService.Create(newCar);

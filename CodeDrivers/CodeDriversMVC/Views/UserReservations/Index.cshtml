@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CodeDriversMVC.Models.UserReservationModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Twoje rezerwacje</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Marka
+            </th>
+            <th>
+                Model
+            </th>
+            <th>
+                Data wypożyczenia
+            </th>
+            <th>
+                Data zwrotu
+            </th>
+            <th>
+                Cena całkowita
+            </th>
+            <th>
+                Czas trwania rezerwacji
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalReservationPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationDuration)
+            </td>
+                <td>
+                    <input type="hidden" name="reservationId" value=@item.ReservationId/>
+                    @Html.ActionLink("Zadaj pytanie", "AskAQuestion", new { reservationId = item.ReservationId }, new { @class = "btn btn-ask" })
+                    @Html.ActionLink("Odwołaj rezerwację", "CancelReservation", new { reservationId = item.ReservationId}, new { @class = "btn btn-delete" })
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+    .btn-delete {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+
+    .btn-ask {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+    }
+</style>
