@@ -1,10 +1,11 @@
-﻿@model IEnumerable<CodeDriversMVC.Models.UserReservationModel>
+﻿@using CodeDriversMVC.Services
+@model IEnumerable<CodeDriversMVC.Models.UserReservationModel>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Twoje rezerwacje</h1>
+<h1 style="text-align: center;">Twoje rezerwacje</h1>
 
 
 <table class="table">
@@ -32,35 +33,58 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationFrom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationTo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalReservationPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationDuration)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr style="color: @Html.Raw((new ReservationService(null)).GetReservationColor2(item))">
                 <td>
-                    <input type="hidden" name="reservationId" value=@item.ReservationId/>
-                    @Html.ActionLink("Zadaj pytanie", "AskAQuestion", new { reservationId = item.ReservationId }, new { @class = "btn btn-ask" })
-                    @Html.ActionLink("Odwołaj rezerwację", "CancelReservation", new { reservationId = item.ReservationId}, new { @class = "btn btn-delete" })
+                    @item.Brand
                 </td>
-        </tr>
-}
+                <td>
+                    @item.Model
+                </td>
+                <td>
+                    @item.ReservationFrom.ToShortDateString()
+                </td>
+                <td>
+                    @item.ReservationTo.ToShortDateString()
+                </td>
+                <td>
+                    @item.TotalReservationPrice
+                </td>
+                <td>
+                    @item.ReservationDuration
+                </td>
+                <td>
+                    <input type="hidden" name="reservationId" value="@item.ReservationId" />
+                    @Html.ActionLink("Zadaj pytanie", "AskAQuestion", new { reservationId = item.ReservationId }, new { @class = "btn btn-ask" })
+                    @if (item.ReservationTo < DateTime.Now)
+                    {
+                        <button type="button" class="btn btn-delete" disabled>Odwołaj rezerwację</button>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Odwołaj rezerwację", "CancelReservation", new { reservationId = item.ReservationId }, new { @class = "btn btn-delete" })
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div class="kropka-container">
+    <span style="background-color:#ccc;" class="kropka"></span>
+    <span class="tekst">Skończone</span>
+</div>
+<div class="kropka-container">
+    <span style="background-color:#54e86f;" class="kropka"></span>
+    <span class="tekst">W takcie</span>
+</div>
+<div class="kropka-container">
+    <span style="background-color:#0000FC;" class="kropka"></span>
+    <span class="tekst">Zaplanowane</span>
+</div>
+    </div>
+
+
 <style>
     .btn-delete {
         color: #fff;
@@ -72,5 +96,22 @@
         color: #fff;
         background-color: #5cb85c;
         border-color: #4cae4c;
+    }
+
+    .kropka-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .kropka {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .tekst {
+        font-size: 16px;
     }
 </style>

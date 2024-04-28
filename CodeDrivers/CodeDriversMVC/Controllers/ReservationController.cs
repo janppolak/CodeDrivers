@@ -87,30 +87,12 @@ namespace CodeDriversMVC.Controllers
         {
             return View();
         }
-        public IActionResult ViewAllReservations()
+        public IActionResult AllReservations()
         {
             var reservations = _reservationService.GetAllReservations();
             return View(reservations);
         }
-        public string GetReservationColor(ReservationReportModel reservation)
-        {
-            var currentDate = DateTime.Now;
-            var reservationFrom = reservation.ReservationFrom;
-            var reservationTo = reservation.ReservationTo;
-
-            if (currentDate > reservationTo)
-            {
-                return "gray"; 
-            }
-            else if (currentDate >= reservationFrom && currentDate <= reservationTo)
-            {
-                return "green";
-            }
-            else
-            {
-                return "blue";
-            }
-        }
+        
         public IActionResult GeneratePDFReport(string brandFilter, string modelFilter, string fromDateFilter, string toDateFilter, string priceFilter, string emailFilter)
         {
             try
