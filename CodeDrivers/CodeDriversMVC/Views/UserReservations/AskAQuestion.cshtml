@@ -1,17 +1,17 @@
 ﻿
 @{
     ViewData["Title"] = "AskAQuestion";
+    var reservationId = ViewBag.ReservationId;
 }
 
 <h1>Zadaj pytanie</h1>
-
-<div class="form-group">
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-
-@Html.ActionLink("Wyślij", "AskAQuestion", new { reservationId = 12 }, new { @class = "btn btn-ask" })
-
-</div>
-
+<form asp-action="AskAQuestion">
+    <div class="form-group">
+        <textarea class="form-control" name="message" id="messageTextArea" rows="3"></textarea>
+        <input type="hidden" name="reservationId" value="@reservationId" />
+        <button type="submit" class="btn btn-ask">Wyślij</button>
+    </div>
+</form>
 <style>
     .btn-ask {
         color: #fff;

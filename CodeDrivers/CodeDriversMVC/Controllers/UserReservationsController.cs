@@ -25,27 +25,27 @@ namespace CodeDriversMVC.Controllers
             var userReservations = _reservation.GetUserReservations(email);
             return View(userReservations);
         }
-        
+
         public IActionResult CancelReservation(int reservationId)
         {
             _reservation.CancelReservation(reservationId);
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult AskAQuestion()
+        public IActionResult AskAQuestion(int reservationId)
         {
+            ViewBag.ReservationId = reservationId;
             return View();
         }
 
-
         [HttpPost]
-        public IActionResult AskAQuestion(string message)
+        public IActionResult AskAQuestion(string message, int reservationId)
         {
-            EmailService.SendEmailAsync(Constants.Constants.AdminEmail, "Question", message);
-            
-            return RedirectToAction("Home", "Index");
+            EmailService.SendEmailAsync(Constants.Constants.AdminEmail, $"Zapytanie o rezerwację {reservationId}", message);
+
+            return RedirectToAction("Index", "Home");
         }
 
-     
+
     }
 }
