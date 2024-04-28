@@ -108,31 +108,12 @@ namespace CodeDriversMVC.Services
 
             return reservationResult;
         }
-        public string GetReservationColor(ReservationReportModel reservation)
+
+        public string SetReservationColor(DateTime from, DateTime to)
         {
             var currentDate = DateTime.Now;
-            var reservationFrom = reservation.ReservationFrom;
-            var reservationTo = reservation.ReservationTo;
-
-            if (currentDate > reservationTo)
-            {
-                return "gray";
-            }
-            else if (currentDate >= reservationFrom && currentDate <= reservationTo)
-            {
-                return "green";
-            }
-            else
-            {
-                return "blue";
-            }
-        }
-
-        public string GetReservationColor2(UserReservationModel reservation)
-        {
-            var currentDate = DateTime.Now;
-            var reservationFrom = reservation.ReservationFrom;
-            var reservationTo = reservation.ReservationTo;
+            var reservationFrom = from;
+            var reservationTo = to;
 
             if (currentDate > reservationTo)
             {

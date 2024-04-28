@@ -92,7 +92,7 @@
         <tbody>
             @foreach (var reservation in Model)
             {
-                <tr style="color: @Html.Raw((new ReservationService(null)).GetReservationColor(reservation))" font-weight: "bold ">
+                <tr style="color: @Html.Raw((new ReservationService(null)).SetReservationColor(reservation.ReservationFrom, reservation.ReservationTo))" font-weight: "bold ">
                     <td>@reservation.Brand</td>
                     <td>@reservation.Model</td>
                     <td>@reservation.ReservationFrom.ToShortDateString()</td>
