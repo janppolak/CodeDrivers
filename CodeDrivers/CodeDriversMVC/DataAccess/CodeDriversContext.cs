@@ -8,7 +8,6 @@ namespace CodeDriversMVC.DataAccess
     public class CodeDriversContext : DbContext
     {
         public virtual DbSet<Car> Cars { get; set; }
-        public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
