@@ -12,6 +12,7 @@ namespace CodeDriversMVC.Mapper
             CreateMap<ReservationViewModel, ReservationRequestModel>()
                 .ForMember(dest => dest.TotalReservationPrice, opt => opt.MapFrom(model => PriceCalculationHelper.CalculateTotalPrice(model.ReservationFrom, model.ReservationTo, model.PricePerDay)));
             CreateMap<ReservationRequestModel, ReservationResultModel>();
+            CreateMap<ReservationReportModel, UserReservationModel>().ReverseMap();
 
         }
     }

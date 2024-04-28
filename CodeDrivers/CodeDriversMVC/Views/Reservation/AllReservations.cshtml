@@ -1,4 +1,5 @@
 ﻿@using CodeDriversMVC.Controllers
+@using CodeDriversMVC.Services
 @model IEnumerable<ReservationReportModel>
 
 <h2 style="text-align:center;">Wszystkie rezerwacje</h2>
@@ -91,7 +92,7 @@
         <tbody>
             @foreach (var reservation in Model)
             {
-                <tr style="color: @Html.Raw((new ReservationController(null, null, null)).GetReservationColor(reservation))" font-weight: "bold ">
+                <tr style="color: @Html.Raw((new ReservationService(null)).GetReservationColor(reservation))" font-weight: "bold ">
                     <td>@reservation.Brand</td>
                     <td>@reservation.Model</td>
                     <td>@reservation.ReservationFrom.ToShortDateString()</td>
