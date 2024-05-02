@@ -35,7 +35,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr style="color: @Html.Raw((new ReservationService(null)).GetReservationColor2(item))">
+            <tr style="color: @Html.Raw((new ReservationService(null)).SetReservationColor(item.ReservationFrom, item.ReservationTo))">
                 <td>
                     @item.Brand
                 </td>
@@ -52,7 +52,7 @@
                     @item.TotalReservationPrice
                 </td>
                 <td>
-                    @item.ReservationDuration
+                    @item.ReservationDuration.TotalDays
                 </td>
                 <td>
                     <input type="hidden" name="reservationId" value="@item.ReservationId" />

@@ -2,7 +2,7 @@
 
 namespace CodeDriversMVC.Helpers
 {
-    public static class CarValidationHelper
+    public static class CarPriceValidationHelper
     {
         public static bool IsPriceBelowMinimum(decimal minimalPrice, decimal price)
         {

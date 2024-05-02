@@ -9,7 +9,7 @@ namespace CodeDriversMVC.Services
     {
         private readonly CodeDriversContext _context;
 
-        public UserReservationService(CodeDriversContext context, IMapper mapper)
+        public UserReservationService(CodeDriversContext context)
         {
             _context = context; 
         }

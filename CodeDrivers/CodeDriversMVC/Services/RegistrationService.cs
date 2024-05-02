@@ -35,11 +35,6 @@ namespace CodeDriversMVC.Services
             }
         }
 
-        //public User GetById(int id)
-        //{
-        //    return _context.Set<User>().FirstOrDefault(user => user.Id == id);
-        //}
-
         public List<User> GetAll()
         {
             return _context.Set<User>().ToList();

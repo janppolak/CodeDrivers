@@ -43,7 +43,7 @@ namespace CodeDriversMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Car car)
         {
-            if (CarValidationHelper.IsPriceBelowMinimum(Constants.Constants.MinimalPricePerDay, car.PricePerDay))
+            if (CarPriceValidationHelper.IsPriceBelowMinimum(Constants.Constants.MinimalPricePerDay, car.PricePerDay))
             {
                 ModelState.AddModelError("PriceIsLessThan50Error", "Cena wynajmu nie może być niższa niż 50 zł.");
                 return View("Create", car);

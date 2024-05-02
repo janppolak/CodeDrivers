@@ -18,7 +18,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="UserEmail" class="control-label">Twój adres e-mail</label>
-                <input asp-for="UserEmail" class="form-control" readonly style="background-color: #f8f9fa; cursor: not-allowed;  />
+                <input asp-for="UserEmail" class="form-control" readonly style="background-color: #f8f9fa; cursor: not-allowed; text-align: center" />
                 <span asp-validation-for="UserEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -48,7 +48,7 @@
             </div>
             <div class="form-group">
                 <label for="TotalReservationPrice">Cena całkowita</label>
-                <div class="form-control" id="TotalPrice" type="number">@ViewData["TotalPrice"] zł</div>
+                <div class="form-control" id="TotalPrice" type="number">@string.Format(new System.Globalization.CultureInfo("pl-PL"), "{0:N2}", ViewData["TotalPrice"]) zł</div>
             </div>
 
             <br />
@@ -110,7 +110,10 @@
         .Reservation-Panel .form-control[readonly] {
             background-color: #f8f9fa;
             cursor: not-allowed;
+
         }
+
+
 
 </style>
 
@@ -139,9 +142,9 @@
             var durationTime = (reservationTo - reservationFrom) / (1000 * 60 * 60 * 24);
 
             var totalPrice = durationTime * pricePerDay;
-
             var totalPriceElement = document.getElementById('TotalPrice');
-            totalPriceElement.textContent = totalPrice.toFixed(2);
+            totalPriceElement.textContent = totalPrice.toLocaleString('pl-PL', { minimumFractionDigits: 2 }) + " zł";
+
             durationTimeElement.textContent = durationTime;
         }
     </script>
