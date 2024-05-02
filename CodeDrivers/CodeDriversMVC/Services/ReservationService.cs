@@ -28,7 +28,8 @@ namespace CodeDriversMVC.Services
                 Owner = owner,
                 ReservationFrom = model.ReservationFrom,
                 ReservationTo = model.ReservationTo,
-                TotalReservationPrice = model.TotalReservationPrice
+                TotalReservationPrice = model.TotalReservationPrice,
+                //Duration = model.ReservationTo - model.ReservationFrom
             };
 
             _context.Set<Reservation>().Add(reservation);
@@ -43,6 +44,7 @@ namespace CodeDriversMVC.Services
                 ReservationTo = reservation.ReservationTo,
                 TotalReservationPrice = reservation.TotalReservationPrice,
                 OwnerEmail = reservation.Owner.Email
+
             };
 
             return reservationResult;
@@ -84,9 +86,9 @@ namespace CodeDriversMVC.Services
             var reservations = _context.Set<Reservation>()
                                         .Include(reservation => reservation.Car)
                                         .Include(reservation => reservation.Owner)
-                                        .ToList();  
+                                        .ToList();
 
-            
+
             var filteredReservations = reservations.Where(reservation =>
                 (string.IsNullOrEmpty(brandFilter) || reservation.Car.Brand.ToString() == brandFilter) &&
                 (string.IsNullOrEmpty(modelFilter) || reservation.Car.Model == modelFilter) &&
