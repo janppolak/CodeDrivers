@@ -29,7 +29,7 @@ namespace CodeDriversMVC.Services
                 ReservationFrom = model.ReservationFrom,
                 ReservationTo = model.ReservationTo,
                 TotalReservationPrice = model.TotalReservationPrice,
-                //Duration = model.ReservationTo - model.ReservationFrom
+                Duration = (model.ReservationTo - model.ReservationFrom).Days,
             };
 
             _context.Set<Reservation>().Add(reservation);
